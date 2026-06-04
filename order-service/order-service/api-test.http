@@ -1,0 +1,30 @@
+### ✅ TEST 1 - Place an Order
+POST http://localhost:8083/api/orders
+Content-Type: application/json
+
+{
+  "userEmail": "gudurukhasim@gmail.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "iPhone 15",
+      "quantity": 2,
+      "price": 79999.00
+    }
+  ]
+}
+
+###
+
+### ✅ TEST 2 - Get all orders
+GET http://localhost:8083/api/orders
+
+###
+
+### ✅ TEST 3 - Get orders by user
+GET http://localhost:8083/api/orders/user/gudurukhasim@gmail.com
+
+###
+
+### ✅ TEST 4 - Get order by number (replace with actual order number)
+GET http://localhost:8083/api/orders/ORD-XXXXXXXX

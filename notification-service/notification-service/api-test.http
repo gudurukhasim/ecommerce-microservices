@@ -1,0 +1,31 @@
+### STEP 1 - Place a new order
+POST http://localhost:8083/api/orders
+Content-Type: application/json
+
+{
+  "userEmail": "john@example.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "iPhone 15",
+      "quantity": 1,
+      "price": 79999.00
+    }
+  ]
+}
+
+###
+
+### STEP 2 - Check notifications (wait 3 seconds after placing order)
+GET http://localhost:8085/api/notifications
+
+###
+
+### STEP 3 - Check notifications for user
+GET http://localhost:8085/api/notifications/user/john@example.com
+
+###
+
+### STEP 4 - Check notification for specific order
+### Replace ORD-XXXXXXXX with actual order number
+GET http://localhost:8085/api/notifications/order/ORD-E9D9A316

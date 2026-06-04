@@ -1,0 +1,78 @@
+# ============================================
+# FULL E2E FLOW TEST
+# ============================================
+
+### FLOW STEP 1 - Register a user
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "dil",
+  "email": "dil@example.com",
+  "password": "password123"
+}
+
+###
+
+### FLOW STEP 2 - Login
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "dil@example.com",
+  "password": "password123"
+}
+
+###
+
+### FLOW STEP 3 - Create a Product
+POST http://localhost:8082/api/products
+Content-Type: application/json
+
+{
+  "name": "iPhone 17",
+  "description": "Latest Apple smartphone",
+  "price": 109999.00,
+  "stock": 100,
+  "category": "Electronics"
+}
+
+###
+
+### FLOW STEP 4 - Get all products (verify Redis cache)
+GET http://localhost:8082/api/products
+
+###
+
+### FLOW STEP 5 - Place an Order
+POST http://localhost:8083/api/orders
+Content-Type: application/json
+
+{
+  "userEmail": "dil@example.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "iPhone 17",
+      "quantity": 1,
+      "price": 109999.00
+    }
+  ]
+}
+
+###
+
+### FLOW STEP 6 - Check payment processed
+### (wait 2-3 seconds after placing order)
+GET http://localhost:8084/api/payments
+
+###
+
+### FLOW STEP 7 - Check order status is CONFIRMED
+### Replace ORD-XXXXXXXX with actual order number from Step 5
+GET http://localhost:8083/api/orders/ORD-E2C54FA3
+
+###
+
+### FLOW STEP 8 - Get all orders for user
+GET http://localhost:8083/api/orders/user/dil@example.com

@@ -1,0 +1,75 @@
+### ✅ TEST 1 - Create Product 1
+POST http://localhost:8082/api/products
+Content-Type: application/json
+
+{
+  "name": "iPhone 15",
+  "description": "Latest Apple smartphone",
+  "price": 79999.00,
+  "stock": 100,
+  "category": "Electronics"
+}
+
+###
+
+### ✅ TEST 2 - Create Product 2
+POST http://localhost:8082/api/products
+Content-Type: application/json
+
+{
+  "name": "Samsung TV 55inch",
+  "description": "4K Smart TV",
+  "price": 55999.00,
+  "stock": 50,
+  "category": "Electronics"
+}
+
+###
+
+### ✅ TEST 3 - Get All Products (hits DB first time)
+GET http://localhost:8082/api/products
+
+###
+
+### ✅ TEST 4 - Get All Products again (hits CACHE this time)
+GET http://localhost:8082/api/products
+
+###
+
+### ✅ TEST 5 - Get by ID
+GET http://localhost:8082/api/products/1
+
+###
+
+### ✅ TEST 6 - Get by Category
+GET http://localhost:8082/api/products/category/Electronics
+
+###
+
+### ✅ TEST 7 - Update Product
+PUT http://localhost:8082/api/products/1
+Content-Type: application/json
+
+{
+  "name": "iPhone 15 Pro",
+  "description": "Latest Apple smartphone Pro version",
+  "price": 129999.00,
+  "stock": 80,
+  "category": "Electronics"
+}
+
+###
+
+### ✅ TEST 8 - Delete Product
+DELETE http://localhost:8082/api/products/2
+
+###
+
+### ❌ TEST 9 - Validation test (missing fields)
+POST http://localhost:8082/api/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -100
+}

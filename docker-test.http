@@ -1,0 +1,89 @@
+### 1️⃣ Register user
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Docker User",
+  "email": "docker@example.com",
+  "password": "password123"
+}
+
+###
+
+### 2️⃣ Login - COPY THE TOKEN FROM RESPONSE
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "docker@example.com",
+  "password": "password123"
+}
+
+###
+
+### 3️⃣ Create product (replace TOKEN)
+POST http://localhost:8080/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+Content-Type: application/json
+
+{
+  "name": "MacBook Pro",
+  "description": "Apple Laptop",
+  "price": 149999.00,
+  "stock": 50,
+  "category": "Electronics"
+}
+
+###
+
+### 4️⃣ Get all products (replace TOKEN)
+GET http://localhost:8080/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+
+###
+
+### 5️⃣ Place order (replace TOKEN)
+POST http://localhost:8080/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+Content-Type: application/json
+
+{
+  "userEmail": "docker@example.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "MacBook Pro",
+      "quantity": 1,
+      "price": 149999.00
+    }
+  ]
+}
+
+###
+
+### 6️⃣ Check payments (replace TOKEN) - wait 3 seconds
+GET http://localhost:8080/api/payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+
+###
+80EEDEB5
+### 7️⃣ Check order status (replace TOKEN and ORDER_NUMBER)
+GET http://localhost:8080/api/orders/ORD-80EEDEB5
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+
+###
+
+### 8️⃣ Check notifications (replace TOKEN)
+GET http://localhost:8080/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkb2NrZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNTcxMDU3LCJleHAiOjE3ODA2NTc0NTd9.Yi3vV_ItUM24qfK2uc1xtkxGEaXDUJaJTmqaWRxd1g8
+
+###
+
+### 9️⃣ Test unauthorized (no token - should return 401)
+GET http://localhost:8080/api/products
+
+###
+
+### 🔟 Test invalid token (should return 401)
+GET http://localhost:8080/api/products
+Authorization: Bearer invalidtoken123

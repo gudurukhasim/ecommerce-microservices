@@ -1,0 +1,30 @@
+### STEP 1 - Place a new order (in order-service)
+POST http://localhost:8083/api/orders
+Content-Type: application/json
+
+{
+  "userEmail": "gudurukhasim@gmail.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "iPhone 15",
+      "quantity": 1,
+      "price": 79999.00
+    }
+  ]
+}
+
+###
+
+### STEP 2 - Check payment was processed
+GET http://localhost:8084/api/payments
+
+###
+
+### STEP 3 - Check order status updated (replace ORD-XXXXXXXX)
+GET http://localhost:8083/api/orders/ORD-XXXXXXXX
+
+###
+
+### STEP 4 - Check payment by order number
+GET http://localhost:8084/api/payments/order/ORD-XXXXXXXX

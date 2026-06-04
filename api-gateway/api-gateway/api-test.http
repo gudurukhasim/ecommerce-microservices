@@ -1,0 +1,62 @@
+### STEP 1 - Register (no token needed - public route)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Gateway User",
+  "email": "gateway@example.com",
+  "password": "password123"
+}
+
+###
+
+### STEP 2 - Login (get token)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "gateway@example.com",
+  "password": "password123"
+}
+
+###
+
+### STEP 3 - Get products WITH token (replace YOUR_TOKEN_HERE)
+GET http://localhost:8080/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXRld2F5QGV4YW1wbGUuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTc4MDQ4MjAxNSwiZXhwIjoxNzgwNTY4NDE1fQ.U5xwxcfpXS0iJ0mbJu0I1dn3O0xjwDWPHfMuBVwr_l0
+
+###
+
+### STEP 4 - Get products WITHOUT token (should return 401)
+GET http://localhost:8080/api/products
+
+###
+
+### STEP 5 - Place order WITH token
+POST http://localhost:8080/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXRld2F5QGV4YW1wbGUuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTc4MDQ4MjA0MywiZXhwIjoxNzgwNTY4NDQzfQ.PekVyvG_FNqdMBy9qixwKNNMQbuZqv6THk6Hqb0loMk
+Content-Type: application/json
+
+{
+  "userEmail": "gateway@example.com",
+  "items": [
+    {
+      "productId": 1,
+      "productName": "iPhone 15",
+      "quantity": 1,
+      "price": 79999.00
+    }
+  ]
+}
+
+###
+
+### STEP 6 - Get all payments WITH token
+GET http://localhost:8080/api/payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXRld2F5QGV4YW1wbGUuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTc4MDQ4MjA0MywiZXhwIjoxNzgwNTY4NDQzfQ.PekVyvG_FNqdMBy9qixwKNNMQbuZqv6THk6Hqb0loMk
+
+###
+
+### STEP 7 - Get notifications WITH token
+GET http://localhost:8080/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXRld2F5QGV4YW1wbGUuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTc4MDQ4MjA0MywiZXhwIjoxNzgwNTY4NDQzfQ.PekVyvG_FNqdMBy9qixwKNNMQbuZqv6THk6Hqb0loMk
