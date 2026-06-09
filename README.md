@@ -6,6 +6,9 @@ A production-ready, event-driven microservices application built with **Java 17*
 
 ## 🏗️ Architecture
 
+<img width="527" height="577" alt="image" src="https://github.com/user-attachments/assets/fc85175b-9ed5-4f95-ab21-f85fea3daa89" />
+
+
 Client → API Gateway (8080)
 ↓
 ┌─────────────────────────────────┐
