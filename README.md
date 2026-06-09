@@ -9,25 +9,6 @@ A production-ready, event-driven microservices application built with **Java 17*
 <img width="527" height="577" alt="image" src="https://github.com/user-attachments/assets/fc85175b-9ed5-4f95-ab21-f85fea3daa89" />
 
 
-Client → API Gateway (8080)
-↓
-┌─────────────────────────────────┐
-│         Microservices           │
-├──────────────┬──────────────────┤
-│ User Service │ Product Service  │
-│    :8081     │     :8082        │
-├──────────────┴──────────────────┤
-│         Order Service :8083     │
-├─────────────────────────────────┤
-│        Payment Service :8084    │
-├─────────────────────────────────┤
-│     Notification Service :8085  │
-└─────────────────────────────────┘
-↓ Kafka Events
-┌─────────────────────────────────┐
-│         Infrastructure          │
-│  MySQL │ MongoDB │ Redis │ Kafka │
-└─────────────────────────────────┘
 
 ---
 
